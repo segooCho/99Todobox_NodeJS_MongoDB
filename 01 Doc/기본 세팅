@@ -6,16 +6,14 @@
 4. npm install =>  모듈 세팅
 5. npm start
 6. 127.0.0.1:3000 => 확인
-7.
 
 
-
-* mongodb 설치(문서화 필요)
+* mongodb 설치(문서화 필요) 완료
 1. mongod
 
-* robomongo(mongodb UI 모니터링 툴) 설치
+* robomongo(mongodb UI 모니터링 툴) 설치 완료
 
-* Mongoose(MongoDB 스키마를 추가해서 모델 폴더 참조시 명시적으로 지정) 설치
+* Mongoose(MongoDB 스키마를 추가해서 모델 폴더 참조시 명시적으로 지정) 설정 완료
 1. npm install --save mongodb
 2. npm install --save mongoose
 3. npm install --save mongoose-auto-increment
@@ -27,6 +25,10 @@
 3. "start": "nodemon ./bin/www"
 4. npm start
 
+* multer(파일 전송) 설정 완료
+1. npm install -save multer
+
+
 
 
 
@@ -34,3 +36,4 @@
 * XSS, CSRF 보안 처리 필요 (lecture_6)
 * multer 파일 전송 (lecture_7)
 * passport (lecture_7)
+* session 

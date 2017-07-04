@@ -3,8 +3,11 @@ var Schema = mongoose.Schema;
 var autoIncrement = require('mongoose-auto-increment');
 
 var TaskSchema = new Schema({
-    title : String,
-    content : String,
+    fromUser : String,
+    nickName : String,
+    phoneNo : String,
+    message : String,
+    mediaFile : String,
     created_at : {
         type : Date,
         default : Date.now()
@@ -21,5 +24,5 @@ TaskSchema.virtual('getDate').get(function(){
     };
 });
 
-TaskSchema.plugin( autoIncrement.plugin , { model : "task", field : "id" , startAt : 1 } );
+//TaskSchema.plugin( autoIncrement.plugin , { model : "task", field : "id" , startAt : 1 } );
 module.exports = mongoose.model('task' , TaskSchema);
