@@ -47,6 +47,7 @@ router.get('/' , function(req, res){
 });
 
 /* POST : Task Edit */
+/* prepare 처리 기능 없어도 됨
 router.post('/edit' , function(req, res){
     Task.find({_id :  req.body._id } , function(err, data){
         if (err) {
@@ -60,7 +61,7 @@ router.post('/edit' , function(req, res){
         }        
     });
 });
-
+*/
 
 /* POST : New Task Add */
 router.post('/write', upload.single('mediaFile'), function(req, res){
@@ -73,6 +74,27 @@ router.post('/write', upload.single('mediaFile'), function(req, res){
     });
     task.save(function(err){
         httpMsgs.sendNoDataFound(req, res);
+    });
+});
+
+
+/* POST : Task Edit */
+router.post('/edit', upload.single('mediaFile'), function(req, res){
+    Task.findOne( {_id : req.body._id} , function(err, data){
+        //console.log(req.body._id);
+        if(req.file){  //요청중에 파일이 존재 할시 기존 mediaFile을 지운다.
+            fs.unlinkSync( uploadDir + '/' + data.mediaFile );
+        }
+
+        var query = {
+            message : req.body.message,
+            mediaFile : (req.file) ? req.file.filename : ""
+        };
+
+        Task.update( {_id : req.body._id }, { $set : query },
+        function(err){
+            httpMsgs.sendNoDataFound(req, res);
+        });
     });
 });
 
