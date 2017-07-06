@@ -80,10 +80,17 @@ router.post('/write', upload.single('mediaFile'), function(req, res){
 
 /* POST : Task Edit */
 router.post('/edit', upload.single('mediaFile'), function(req, res){
+    //console.log(req.file.filename);
     Task.findOne( {_id : req.body._id} , function(err, data){
-        //console.log(req.body._id);
+        console.log(req.file);
         if(req.file){  //요청중에 파일이 존재 할시 기존 mediaFile을 지운다.
-            fs.unlinkSync( uploadDir + '/' + data.mediaFile );
+            if (data.mediaFile != "") {
+                console.log('==================================OK');
+                fs.unlinkSync(uploadDir + '/' + data.mediaFile);
+                //fs.unlink(uploadDir + '/' + data.mediaFile);
+            } else {
+                console.log('==================================NG');
+            }
         }
 
         var query = {
